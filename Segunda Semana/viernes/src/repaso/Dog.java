@@ -6,29 +6,42 @@ public class Dog {
     private String color;
 
 
-    Dog(String breed, int age, String color) {
+    public Dog(String breed, int age, String color) {
         this.breed = breed;
         this.age = age;
         this.color = color;
     }
-    Dog()
+    public Dog()
     {
 
     }
 
-    void saludar()
+    public void saludar()
     {
         System.out.println("Hola soy un perro de raza "+ breed);
     }
 
-    String getBreed(){
+    public String getBreed(){
         return breed;
     };
-    String getColor(){
+    public String getColor(){
         return color;
     }
-    int getAge(){
+    public int getAge(){
         return age;
     }
+
+    public void setBreed(String newBreed){
+        breed = newBreed;
+    }
+
+    public void setAge(int age){
+        this.age = age;
+    }
+
+   public  void setColor(String color){
+        this.color = color;
+    }
+
 
 }

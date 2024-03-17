@@ -13,8 +13,8 @@ public class App {
         /* myDog1.breed = "labrador";
         myDog2.breed = "Pastor Aleman";*/
 
-        System.out.println(myDog1.breed);
-        System.out.println(myDog2.breed);
+//        System.out.println(myDog1.breed);
+//        System.out.println(myDog2.breed);
 
         myDog1.saludar();
         myDog2.saludar();
