@@ -33,4 +33,28 @@ public class ComputerStore {
         return arrayComputers.size();
     }
 
+    public void printInfoComputers()
+    {
+        System.out.println("Computadoras disponibles");
+        for (int i = 0; i < arrayComputers.size() ; i++) {
+
+            Computer tmpComputer = arrayComputers.get(i);
+            tmpComputer.printInfo();
+            System.out.println("====================================================");
+
+        }
+    }
+
+    public void filterRam(int minRam)
+    {
+        System.out.println("Resultado filtro");
+        for (int i = 0; i < arrayComputers.size() ; i++) {
+            Computer tmpComputer = arrayComputers.get(i);
+            if(tmpComputer.getRam()>=minRam){
+                tmpComputer.printInfo();
+            }
+        }
+
+    }
+
 }

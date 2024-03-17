@@ -23,10 +23,27 @@ public class App {
                 "Oplex",
                 8,
                 512);
+
+        Computer computer2 = new Computer(
+                "HP",
+                "N200",
+                16,
+                1024);
+        Computer computer3 = new Computer(
+                "Huaweii",
+                "Tr4",
+                32,
+                512);
         //Agregando computadora a la tienda
 
         computerStore1.addComputer(computer1);
+        computerStore1.addComputer(computer2);
+        computerStore1.addComputer(computer3);
         System.out.println(computerStore1.getSizeListComputer());
+
+        computerStore1.printInfoComputers();
+
+        computerStore1.filterRam(12);
 
     }
 }
