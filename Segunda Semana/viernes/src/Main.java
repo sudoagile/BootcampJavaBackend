@@ -1,3 +1,4 @@
+import ejercicio2.Computer;
 import repaso.Dog;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -5,6 +6,6 @@ import repaso.Dog;
 public class Main {
     public static void main(String[] args) {
 
-Dog mydog4 = new Dog();
+
     }
 }
