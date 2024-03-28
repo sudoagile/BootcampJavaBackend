@@ -18,6 +18,13 @@ public class Main {
 //      IEstudiante estudianteProfesor = new EstudianteProfesor();
         //List<Integer>lista1 = new ArrayList<>();
 
+        //Casting
+
+        int a = 10;
+        float b = a;
+        float c = 10.3f;
+        int d = (int)c;
+
 
 
     }

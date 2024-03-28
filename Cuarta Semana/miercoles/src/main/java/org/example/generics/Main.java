@@ -16,7 +16,7 @@ public class Main {
 //        arrayList3.add(new UsuarioImpl());
 
             Point2D<Integer> point2D = new Point2D<>(1,2);
-            //Point2D<String> point2DString = new Point2D<>("hola","hello");
+            Point2D<String> point2DString = new Point2D<>("hola","hello");
 
 
 

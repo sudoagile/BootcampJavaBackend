@@ -1,6 +1,6 @@
 package org.example.generics;
 
-public class Point2D <E extends Number>{
+public class Point2D <E>{ //<E extends Number> Asi si se quiere q sea solo numero
     private E x;
     private E y;
 
