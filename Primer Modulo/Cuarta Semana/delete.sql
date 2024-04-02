@@ -1,6 +1,6 @@
 -- on delete cascade
 -- on delete set null
--- on delete no action
+-- on delete no action "Es por defecto"
 -- on delete set restrict
 
 create table if not exists productos(
@@ -22,13 +22,15 @@ create table if not exists comentarios  (
 	id_comentario serial primary key,
 	contenido text not null,
 	id_producto integer references productos(id_producto) on delete cascade,
-	id_usuario integer references usuarios(id_usuario) on delete cascade
+	id_usuario integer references usuarios(id_usuario) on delete cascade /*Si se borra un usuario se borran todos
+	                                                                       sus comentarios*/
 );
 
 create table if not exists compras (
 	id_compra serial primary key,
 	id_usuario integer references usuarios(id_usuario) on delete restrict,
-	id_producto integer references productos(id_producto) on delete set null,
+	id_producto integer references productos(id_producto) on delete set null, /*Si se borra el prodcuto la venta no se
+	                                                                            borra*/
 	cantidad integer not null
 )
 insert into productos(nombre, precio) values('Tablet', 2000);
