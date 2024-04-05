@@ -121,5 +121,27 @@ select aviones.*, aerolineas.*
 from aviones join aerolineas
     on aviones.id_aerolinea_fk = aerolineas.id_aerolinea;
 
+select * from aviones;
 
+select vuelos.id_vuelo,vuelos.origen, vuelos.destino, aviones.id_avion
+from vuelos join aviones
+    on id_avion_fk = id_avion;
 
+-- seleccionar vuelos con sus aviones
+
+select * from vuelos v join aviones a on v.id_avion_fk = a.id_avion;
+
+-- seleccioonar vuelos con sus aviones y sus repspectivas aerolineas
+
+select * from vuelos v join aviones join aerolineas on v.id_avion_fk = a.id_avion, on id_aerolinea_fk = id_aerolinea;
+
+SELECT vuelos.*, aviones.*, aerolineas.*
+FROM vuelos
+JOIN aviones ON vuelos.id_avion_fk = aviones.id_avion
+JOIN aerolineas ON aviones.id_aerolinea_fk = aerolineas.id_aerolinea;
+
+--Reducida
+SELECT *
+FROM vuelos v
+JOIN aviones a ON v.id_avion_fk = a.id_avion
+JOIN aerolineas ar ON ar.id_aerolinea = id_aerolinea_fk;
