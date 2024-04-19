@@ -13,6 +13,7 @@ public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
     @Transactional
     public Categoria registrarCategoria(Categoria categoria) {
+
         return categoriaRepository.save(categoria);
     }
 }
