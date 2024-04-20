@@ -1,0 +1,19 @@
+CREATE TABLE empresa (
+	id SERIAL PRIMARY KEY,
+    razon_social VARCHAR(255),
+    tipo_documento CHAR(1),
+    numero_documento CHAR(11),
+    condicion VARCHAR(10),
+    direccion VARCHAR(255),
+    distrito VARCHAR(255),
+    provincia VARCHAR(255),
+    departamento VARCHAR(255),
+    es_agente_retencion BOOLEAN,
+    estado INTEGER,
+    usua_crea VARCHAR(50),
+    date_create TIMESTAMP WITH TIME ZONE,
+    usua_modif VARCHAR(50),
+    date_modif TIMESTAMP WITH TIME ZONE,
+    usua_delet VARCHAR(50),
+    date_delet TIMESTAMP WITH TIME ZONE
+);
