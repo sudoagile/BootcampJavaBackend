@@ -13,8 +13,12 @@ import java.util.Optional;
 
 @Service
 public class SmartphoneServiceImpl implements SmartphoneService {
-    @Autowired
-    SmartphoneDao smartphoneDao;
+
+    private final SmartphoneDao smartphoneDao;
+    SmartphoneServiceImpl(SmartphoneDao smartphoneDao)
+    {
+        this.smartphoneDao = smartphoneDao;
+    }
     @Override
     public Smartphone crearSmartphone(RequestElectronic requestElectronic) {
         Optional<Smartphone> smartphoneOptional = smartphoneDao.findByModelo(requestElectronic.getModelo());

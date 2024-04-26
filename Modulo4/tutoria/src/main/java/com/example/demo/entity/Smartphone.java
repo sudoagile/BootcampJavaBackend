@@ -9,6 +9,7 @@ import lombok.Setter;
 @Table(name = "Electronic")
 @Getter
 @Setter
+
 public class Smartphone extends Electronic{
     private String ram;
     private String camera;

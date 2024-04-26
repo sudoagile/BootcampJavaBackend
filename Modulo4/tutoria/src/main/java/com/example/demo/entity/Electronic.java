@@ -13,6 +13,6 @@ public class Electronic {
     private Integer anio;
     private String brand;
     private Integer price;
-    @Colum(unique=true);
+    @Column(unique=true)
     private String modelo;
 }
