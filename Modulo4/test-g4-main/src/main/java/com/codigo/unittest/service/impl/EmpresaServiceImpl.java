@@ -7,13 +7,13 @@ import com.codigo.unittest.dao.EmpresaRepository;
 import com.codigo.unittest.entity.Empresa;
 import com.codigo.unittest.service.EmpresaService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 @AllArgsConstructor
@@ -50,11 +50,13 @@ public class EmpresaServiceImpl implements EmpresaService {
         entity.setDateCreate(getTimestamp());
         return entity;
     }
+
     private Timestamp getTimestamp(){
         long currentTime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(currentTime);
         return timestamp;
     }
+
     private Empresa getEntityUpdate(EmpresaRequest request, Empresa empresa){
         if(empresa != null){
             empresa.setRazonSocial(request.getRazonSocial());
@@ -71,6 +73,7 @@ public class EmpresaServiceImpl implements EmpresaService {
         }
         return empresa;
     }
+
     @Override
     public ResponseEntity<BaseResponse> obtenerEmpresa(Long id) {
         BaseResponse baseResponse = new BaseResponse();
@@ -108,13 +111,23 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     public ResponseEntity<BaseResponse> actualizar(Long id, EmpresaRequest requestPersona) {
         BaseResponse baseResponse = new BaseResponse();
-        if (empresaRepository.existsById(id)){
-            Empresa empresaRecuperada = empresaRepository.findById(id).orElse( null);
-            Empresa actualizar = getEntityUpdate(requestPersona,empresaRecuperada);
-            baseResponse.setCode(Constants.CODE_OK);
-            baseResponse.setMessage(Constants.MSJ_OK);
-            baseResponse.setEntidad(Optional.of(empresaRepository.save(actualizar)));
-        }else{
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            // Si la empresa existe, entonces actualizamos
+            Empresa empresaRecuperada = empresaOptional.get();
+            Empresa actualizar = getEntityUpdate(requestPersona, empresaRecuperada);
+            if (actualizar != null) {
+                baseResponse.setCode(Constants.CODE_OK);
+                baseResponse.setMessage(Constants.MSJ_OK);
+                baseResponse.setEntidad(Optional.of(empresaRepository.save(actualizar)));
+            } else {
+                // Si no se puede actualizar (por ejemplo, si la solicitud es inválida), retornamos un error
+                baseResponse.setCode(Constants.CODE_ERROR);
+                baseResponse.setMessage("Error al actualizar la empresa");
+                baseResponse.setEntidad(Optional.empty());
+            }
+        } else {
+            // Si la empresa no existe, retornamos un mensaje de error
             baseResponse.setCode(Constants.CODE_EMPRESA_NO_EXIST);
             baseResponse.setMessage(Constants.MSJ_EMPRESA_NO_EXIST);
             baseResponse.setEntidad(Optional.empty());
@@ -125,26 +138,43 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     public ResponseEntity<BaseResponse> delete(Long id) {
         BaseResponse baseResponse = new BaseResponse();
-        if (empresaRepository.existsById(id)){
-            Empresa empresaRecuperada = empresaRepository.findById(id).orElse( null);
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            Empresa empresaRecuperada = empresaOptional.get();
             empresaRecuperada.setEstado(0);
             empresaRecuperada.setUsuaDelet(Constants.AUDIT_ADMIN);
             empresaRecuperada.setDateDelet(getTimestamp());
-
-            //Response
-            baseResponse.setCode(Constants.CODE_OK);
-            baseResponse.setMessage(Constants.MSJ_OK);
-            baseResponse.setEntidad(Optional.of(empresaRepository.save(empresaRecuperada)));
-        }else{
-            baseResponse.setCode(Constants.CODE_EMPRESA_NO_EXIST);
-            baseResponse.setMessage(Constants.MSJ_EMPRESA_NO_EXIST);
-            baseResponse.setEntidad(Optional.empty());
+            // Aquí podrías agregar más lógica si es necesario
+            empresaRepository.save(empresaRecuperada); // Guardar los cambios en la base de datos
+            baseResponse.setMessage("Empresa eliminada correctamente");
+            return ResponseEntity.ok(baseResponse);
+        } else {
+            baseResponse.setMessage("No se encontró ninguna empresa con el ID proporcionado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(baseResponse);
         }
-        return ResponseEntity.ok(baseResponse);
     }
     @Override
     public ResponseEntity<BaseResponse> obtenerEmpresaXNumDoc(String numDocu) {
-        return null;
+        // Buscar una empresa por número de documento en el repositorio
+        Optional<Empresa> empresaOptional = empresaRepository.findByNumeroDocumento(numDocu);
+
+        if (empresaOptional.isPresent()) {
+            // Si se encuentra la empresa, construir la respuesta con los datos de la empresa encontrada
+            Empresa empresaEncontrada = empresaOptional.get();
+            BaseResponse baseResponse = new BaseResponse();
+            baseResponse.setCode(Constants.CODE_OK);
+            baseResponse.setMessage(Constants.MSJ_OK);
+            baseResponse.setEntidad(Optional.of(empresaEncontrada));
+            return ResponseEntity.ok(baseResponse);
+        } else {
+            // Si no se encuentra la empresa, devolver una respuesta indicando que no se encontró
+            BaseResponse baseResponse = new BaseResponse();
+            baseResponse.setCode(Constants.CODE_EMPRESA_NO_EXIST);
+            baseResponse.setMessage(Constants.MSJ_EMPRESA_NO_EXIST);
+            baseResponse.setEntidad(Optional.empty());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(baseResponse);
+        }
     }
+
 
 }
