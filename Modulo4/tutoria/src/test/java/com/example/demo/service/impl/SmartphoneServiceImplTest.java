@@ -48,11 +48,14 @@ class SmartphoneServiceImplTest {
         Mockito.when(smartphoneDao.save(Mockito.any(Smartphone.class))).thenReturn(smartphoneReturn);
 
         Smartphone smartphoneSaved = smartphoneService.crearSmartphone(requestElectronic);
+        assertEquals(smartphoneSaved.getAnio(),requestElectronic.getAnio());
+        assertEquals(smartphoneSaved.getModelo(),requestElectronic.getModelo());
+        assertNotNull(smartphoneSaved.getId());
 
     }
 
     @Test
-    void updateSmartphone() {
+    void crearSmartphoneFailed() {
     }
 
     @Test
