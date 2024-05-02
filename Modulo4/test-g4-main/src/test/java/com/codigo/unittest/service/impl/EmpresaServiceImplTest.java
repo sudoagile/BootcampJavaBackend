@@ -113,6 +113,20 @@ class EmpresaServiceImplTest {
         assertThrows(NoSuchElementException.class, () -> empresaService.obtenerEmpresa(id));
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Test para obtenerTodos All
     @Test
     void testObtenerTodos() {
@@ -129,6 +143,12 @@ class EmpresaServiceImplTest {
         assertNotNull(response.getBody().getEntidad().get());
     }
 
+
+
+
+
+
+    
 
     // Test para actualizar All
     @Test

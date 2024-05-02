@@ -1,4 +1,4 @@
-package $com.codigo;
+package $org.example;
 
 /**
  * Hello world!
