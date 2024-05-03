@@ -6,16 +6,18 @@
         <artifactId>ms-registro</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.example</groupId>
     <artifactId>infraestructure</artifactId>
+    <version>0.0.1</version>
     <name>Archetype - infraestructure</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <!-- Se elimina la dependencia circular -->
+        <!-- Se asumió que 'infraestructure' no necesita dependencias del módulo 'domain' -->
         <dependency>
             <groupId>com.codigo</groupId>
             <artifactId>domain</artifactId>
             <version>2.0.0</version>
+            <scope>compile</scope>
         </dependency>
-
     </dependencies>
 </project>

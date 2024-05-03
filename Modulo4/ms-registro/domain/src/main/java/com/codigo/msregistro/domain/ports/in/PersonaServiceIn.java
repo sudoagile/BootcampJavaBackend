@@ -1,18 +1,15 @@
 package com.codigo.msregistro.domain.ports.in;
 
-import com.codigo.msregistro.domain.aggregates.request.PersonaRequest;
-import com.codigo.msregistro.infraestructure.entity.PersonaEntity;
+import com.codigo.msregistro.domain.aggregates.dto.PersonaDTO;
+import com.codigo.msregistro.domain.aggregates.request.RequestPersona;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface PersonaServiceIn {
-
-PersonaEntity crearPersonaIn(PersonaEntity personaRequest);
-Optional<PersonaEntity> obtenerPersonaIn(Long id);
-List<PersonaEntity> obtenerTodosIn();
-PersonaEntity actualizarpersonaIn(Long id, PersonaRequest personaRequest);
-PersonaEntity deleteIn(Long id);
-
-
+    PersonaDTO crearPersonaIn(RequestPersona requestPersona);
+    Optional<PersonaDTO> obtenerPersonaIn(Long id);
+    List<PersonaDTO> obtenerTodosIn();
+    PersonaDTO actualizarIn(Long id, RequestPersona requestPersona);
+    PersonaDTO deleteIn(Long id);
 }

@@ -11,16 +11,12 @@
     <version>2.0.0</version>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <!-- Se eliminó la dependencia del mismo módulo (circular) -->
+        <!-- Se asumió que este módulo depende de 'infraestructure' -->
         <dependency>
             <groupId>com.codigo</groupId>
-            <artifactId>domain</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
             <artifactId>infraestructure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 </project>
