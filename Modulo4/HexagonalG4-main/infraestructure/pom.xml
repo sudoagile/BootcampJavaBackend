@@ -10,5 +10,12 @@
     <name>Archetype - infraestructure</name>
     <version>2.0.0</version>
     <url>http://maven.apache.org</url>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.codigo</groupId>
+            <artifactId>domain</artifactId>
+            <version>2.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

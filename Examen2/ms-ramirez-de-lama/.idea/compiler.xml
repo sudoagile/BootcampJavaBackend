@@ -7,6 +7,7 @@
       <directory url="file://$PROJECT_DIR$/infraestructure/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -22,6 +23,7 @@
       <module name="application" options="-parameters" />
       <module name="domain" options="-parameters" />
       <module name="infraestructure" options="-parameters" />
+      <module name="ms-ramirez-de-lama" options="" />
     </option>
   </component>
 </project>
