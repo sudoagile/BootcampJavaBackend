@@ -2,7 +2,8 @@ package com.codigo.msregistro.infraestructure.adapters;
 
 import com.codigo.msregistro.domain.aggregates.dto.EmpresaDTO;
 import com.codigo.msregistro.domain.aggregates.request.EmpresaRequest;
-
+import com.codigo.msregistro.infraestructure.entity.EmpresaEntity;
+import com.codigo.msregistro.infraestructure.dao.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +12,40 @@ import java.util.Optional;
 @Service
 public class EmpresaAdapter {
 
-    private final EmpresaDAO empresaDAO;
+    private final EmpresaRepository empresaRepository;
 
     @Autowired
-    public EmpresaAdapter(EmpresaDAO empresaDAO) {
-        this.empresaDAO = empresaDAO;
+    public EmpresaAdapter(EmpresaRepository empresaRepository) {
+        this.empresaRepository = empresaRepository;
     }
 
     public EmpresaDTO crearEmpresaIn(EmpresaRequest requestEmpresa) {
-        // Implementación para crear una empresa en la base de datos
-        // Utiliza el EmpresaDAO para guardar la empresa
-        return null;
+        EmpresaEntity empresaEntity = convertirRequestAEntity(requestEmpresa);
+        empresaEntity = empresaRepository.save(empresaEntity);
+        return convertirEntityADTO(empresaEntity);
     }
 
     public Optional<EmpresaDTO> obtenerEmpresaIn(Long id) {
-        // Implementación para obtener una empresa de la base de datos por su ID
-        // Utiliza el EmpresaDAO para buscar la empresa por su ID
-        return Optional.empty();
+        Optional<EmpresaEntity> empresaOptional = empresaRepository.findById(id);
+        return empresaOptional.map(this::convertirEntityADTO);
+    }
+
+    private EmpresaEntity convertirRequestAEntity(EmpresaRequest requestEmpresa) {
+        EmpresaEntity empresaEntity = new EmpresaEntity();
+        empresaEntity.setNombre(requestEmpresa.getNombre());
+        empresaEntity.setDireccion(requestEmpresa.getDireccion());
+        empresaEntity.setTelefono(requestEmpresa.getTelefono());
+        // Establecer otros campos según sea necesario
+        return empresaEntity;
+    }
+
+    private EmpresaDTO convertirEntityADTO(EmpresaEntity empresaEntity) {
+        EmpresaDTO empresaDTO = new EmpresaDTO();
+        empresaDTO.setId(empresaEntity.getId());
+        empresaDTO.setNombre(empresaEntity.getNombre());
+        empresaDTO.setDireccion(empresaEntity.getDireccion());
+        empresaDTO.setTelefono(empresaEntity.getTelefono());
+        // Establecer otros campos según sea necesario
+        return empresaDTO;
     }
 }

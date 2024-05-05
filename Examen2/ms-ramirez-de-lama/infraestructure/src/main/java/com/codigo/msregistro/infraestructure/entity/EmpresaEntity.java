@@ -47,4 +47,8 @@ public class EmpresaEntity {
 
     @Column(name = "date_delet")
     private Timestamp dateDelet;
+
+    public Long getId() {
+        return idEmpresa;
+    }
 }
