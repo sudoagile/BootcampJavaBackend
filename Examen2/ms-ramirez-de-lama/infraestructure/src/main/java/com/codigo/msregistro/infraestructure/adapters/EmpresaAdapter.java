@@ -35,7 +35,7 @@ public class EmpresaAdapter {
         empresaEntity.setNombre(requestEmpresa.getNombre());
         empresaEntity.setDireccion(requestEmpresa.getDireccion());
         empresaEntity.setTelefono(requestEmpresa.getTelefono());
-        // Establecer otros campos según sea necesario
+
         return empresaEntity;
     }
 
@@ -45,7 +45,7 @@ public class EmpresaAdapter {
         empresaDTO.setNombre(empresaEntity.getNombre());
         empresaDTO.setDireccion(empresaEntity.getDireccion());
         empresaDTO.setTelefono(empresaEntity.getTelefono());
-        // Establecer otros campos según sea necesario
+
         return empresaDTO;
     }
 }

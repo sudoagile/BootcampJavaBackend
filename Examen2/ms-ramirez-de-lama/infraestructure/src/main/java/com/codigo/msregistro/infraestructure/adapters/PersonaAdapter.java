@@ -17,24 +17,22 @@ public class PersonaAdapter implements PersonaServiceOut {
     private final PersonaRepository personaRepository;
 
     public PersonaDTO crearPersonaIn(PersonaRequest requestPersona) {
-        // Implementación para crear una persona en la base de datos
-        // Utiliza el PersonaRepository para guardar la persona
+
         return null;
     }
 
     public Optional<PersonaDTO> obtenerPersonaIn(Long id) {
-        // Implementación para obtener una persona de la base de datos por su ID
-        // Utiliza el PersonaRepository para buscar la persona por su ID
+
         return Optional.empty();
     }
 
     @Override
     public void personaCreadaOut(PersonaDTO personaDTO) {
-        // Implementación para manejar el caso en que se haya creado una persona exitosamente
+
     }
 
     @Override
     public void personaNoEncontradaOut(Long id) {
-        // Implementación para manejar el caso en que no se encuentre la persona buscada
+
     }
 }
