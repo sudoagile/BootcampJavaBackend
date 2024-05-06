@@ -12,7 +12,7 @@
 	<artifactId>ms-registro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>ms-delacruz-ortiz</name>
+    <name>ms-ramirez-de-lama</name>
 	<description>Demo project for Spring Boot</description>
     <modules>
         <module>domain</module>
