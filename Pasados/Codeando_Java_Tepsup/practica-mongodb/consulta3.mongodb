@@ -1,0 +1,66 @@
+use("db1")
+db.universidades.find(
+    // filtro
+    {
+        alumnos:{
+            $lt:15000
+        }
+
+    },
+    {
+        nombre: true,
+        apellido: true
+    }
+)
+
+use("db1")
+db.universidades.find(
+    // filtro
+    {
+        presupuesto:{
+            $gte:1000000,
+            $lte:1500000
+        }
+
+    },
+    {
+        nombre: true,
+        apellido: true
+    }
+)
+use("db1")
+db.universidades.find(
+    {
+        $or: [
+            
+            {
+                presupuesto:
+                {
+                $gt:1000000
+                },
+                alumnos:
+                {
+                    $lt:9000
+                }
+            }
+        ]
+    }
+)
+
+use("db1")
+
+db.universidades.updateMany(
+    {
+    alumnos:{
+
+        $gte:10000
+    },
+    $inc:{
+        presupuesto:500000
+
+    }  
+
+
+})
+use("db1")
+db.universidades.find()
